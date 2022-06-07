@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('guest.welcome');
-});
+// Route::get('/', function () {
+//     return view('guest.welcome');
+// });
 
 Auth::routes();
 // Per gestire tutte le rotte soggette alla stessa cosa si può usare Group 
@@ -26,4 +26,12 @@ Route::middleware('auth')
 ->namespace('Admin')// il percorso delle cartelle partirà con Admin\...
 ->group(function(){
     Route::get('/', 'HomeController@index')->name('home');
+    Route::resource('posts', 'PageController');
 });
+
+
+// alla fine di questo file aggiungiamo una pagina di fallback che va a mappare tutte le rotte non intercettate nelle istruzioni precedenti
+// restituisce la view principale 
+Route::get("{any?}", function(){
+    return view("guest.home");
+})->where("any", ".*");
