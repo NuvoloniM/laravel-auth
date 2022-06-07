@@ -14,9 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('guest.welcome');
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+// Per gestire tutte le rotte soggette alla stessa cosa si può usare Group 
+// tutte le route saranno soggette a controllo autenticazione 
+Route::middleware('auth')
+->prefix('admin') //tutte le rotte seguenti avranno nella uri /admin all'inizio
+->name('admin') //tutti i name partiranno con admin.
+->namespace('Admin')// il percorso delle cartelle partirà con Admin\...
+->group(function(){
+    Route::get('/', 'HomeController@index')->name('home');
+});
