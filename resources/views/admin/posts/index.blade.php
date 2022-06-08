@@ -26,6 +26,9 @@
                     <td>
                         <img src="{{$post->image}}" alt="{{$post->title}}"></td>
                     <td>{{$post->slug}}</td>
+                    <td>
+                        <a href="{{ route('admin.posts.show', $post->id)}}" class="btn btn-info">Show Details</a>
+                    </td>
                     </tr>
                 @empty
                     <h2>Nessun Post presente</h2>
