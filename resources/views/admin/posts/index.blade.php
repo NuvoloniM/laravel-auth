@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <a href="{{route('admin.posts.create')}}" class="btn btn-primary">Aggiungi un nuovo post</a>
+        <a href="{{route('admin.posts.create')}}" class="btn btn-primary my-3">Aggiungi un nuovo post</a>
         <table class="table">
             <thead class="thead-dark">
               <tr>
@@ -29,8 +29,13 @@
                     </td>
                     <td>{{$post->slug}}</td>
                     <td>
-                        <a href="{{ route('admin.posts.show', $post->id)}}" class="btn btn-info">Show Details</a>
-                        <a href="{{ route('admin.posts.edit', $post->id)}}" class="btn btn-warning">Edit Post</a>
+                        <a href="{{ route('admin.posts.show', $post->id)}}" class="btn btn-info ">Show Details</a>
+                        <a href="{{ route('admin.posts.edit', $post->id)}}" class="btn btn-warning my-3">Edit Post</a>
+                        <form action="{{route('admin.posts.destroy', $post->id)}}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                     </tr>
                 @empty
