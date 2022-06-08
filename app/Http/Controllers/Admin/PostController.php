@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 // importo model
 use App\Models\Post;
+// importo support per usare STR::
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -28,7 +30,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.posts.create');
     }
 
     /**
@@ -39,7 +41,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // salvo i dati arrivati
+        $data = $request->all();
+        // istaznio nuova variabile vuota con le stesse caratteristiche dei post del database
+        $new_post = new Post();
+        //riempio la nuova istanza vuota con i dati salvati (solo se prima ho reso fillable nel Models)
+        $new_post->fill($data);
+        // creo la slug partendo dal title nuovo
+        $new_post->slug = Str::slug($new_post->title, '-');
+        // salvo la nuova variabile
+        $new_post->save();
+        // redirecto la vista alla pagina index 
+        return redirect()->route('admin.posts.index');
     }
 
     /**
