@@ -72,9 +72,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        return view ('admin.posts.edit', compact('post'));
     }
 
     /**
@@ -84,9 +84,15 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        //
+        //salvo i dati arrivanti
+        $data = $request->all();
+        // per creare lo slug devo prendere i dati della request 
+        $post->slug = Str::slug($request->title, '-');
+        // metodo update
+        $post->update($data);
+        return redirect()->route('admin.posts.show', $post);
     }
 
     /**

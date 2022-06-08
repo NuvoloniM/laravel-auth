@@ -30,6 +30,7 @@
                     <td>{{$post->slug}}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id)}}" class="btn btn-info">Show Details</a>
+                        <a href="{{ route('admin.posts.edit', $post->id)}}" class="btn btn-warning">Edit Post</a>
                     </td>
                     </tr>
                 @empty
