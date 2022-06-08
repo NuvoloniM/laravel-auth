@@ -1,0 +1,36 @@
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Content</th>
+                <th scope="col">Image</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                @forelse ($posts as $post)
+                    <tr>
+                    <td>{{$post->id}}</td>
+                    <td>{{$post->title}}</td>
+                    <td>
+                        <p>
+                            {{$post->content}}
+                        </p>
+                    </td>
+                    <td>
+                        <img src="{{$post->image}}" alt="{{$post->title}}"></td>
+                    <td>{{$post->slug}}</td>
+                    </tr>
+                @empty
+                    <h2>Nessun Post presente</h2>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
+@endsection

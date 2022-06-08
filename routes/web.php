@@ -22,11 +22,11 @@ Auth::routes();
 // tutte le route saranno soggette a controllo autenticazione 
 Route::middleware('auth')
 ->prefix('admin') //tutte le rotte seguenti avranno nella uri /admin all'inizio
-->name('admin') //tutti i name partiranno con admin.
+->name('admin.') //tutti i name partiranno con admin.
 ->namespace('Admin')// il percorso delle cartelle partirà con Admin\...
 ->group(function(){
     Route::get('/', 'HomeController@index')->name('home');
-    Route::resource('posts', 'PageController');
+    Route::resource('posts', 'PostController');
 });
 
 

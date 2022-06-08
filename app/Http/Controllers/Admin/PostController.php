@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+// importo model
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -14,7 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        // prendo tutto l'array dei post e lo traferisco sotto forma di array multi alla pagina index
+        $posts = Post::all();
+        return view('admin.posts.index', compact('posts'));
     }
 
     /**
