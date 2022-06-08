@@ -25,7 +25,8 @@
                         </p>
                     </td>
                     <td>
-                        <img src="{{$post->image}}" alt="{{$post->title}}"></td>
+                        <img src="{{$post->image}}" alt="{{$post->title}}" style="width: 200px">
+                    </td>
                     <td>{{$post->slug}}</td>
                     <td>
                         <a href="{{ route('admin.posts.show', $post->id)}}" class="btn btn-info">Show Details</a>
