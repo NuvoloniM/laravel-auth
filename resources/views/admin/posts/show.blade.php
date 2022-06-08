@@ -16,3 +16,9 @@
           </div>
     </div>
 @endsection
+
+{{-- in layouts app dopo la sezione content c'è la sezione script, nella quale puoi inserire tutti i js che possono servire solo in quella determinata pagina, per non doverli caricare goni volta semrpe in tutte le pagine --}}
+@section('scripts')
+    {{-- lo importo da asseto, ma prima devo aver inserito il file js in webpack e dopo devo aver rilanciato npm run dev --}}
+    <script src="{{ asset('js/deleteMessage.js')}}"></script>
+@endsection

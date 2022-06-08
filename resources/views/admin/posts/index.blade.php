@@ -42,3 +42,8 @@
         </table>
     </div>
 @endsection
+
+{{-- in layouts app dopo la sezione content c'è la sezione script, nella quale puoi inserire tutti i js che possono servire solo in quella determinata pagina, per non doverli caricare goni volta semrpe in tutte le pagine --}}
+@section('scripts')
+    <script src="{{ asset('js/deleteMessage.js')}}"></script>
+@endsection
