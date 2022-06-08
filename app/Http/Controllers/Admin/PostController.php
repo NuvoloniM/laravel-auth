@@ -52,7 +52,7 @@ class PostController extends Controller
         // salvo la nuova variabile
         $new_post->save();
         // redirecto la vista alla pagina index 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')->with('message', 'Hai aggiunto un nuovo post');
     }
 
     /**
@@ -92,7 +92,7 @@ class PostController extends Controller
         $post->slug = Str::slug($request->title, '-');
         // metodo update
         $post->update($data);
-        return redirect()->route('admin.posts.show', $post);
+        return redirect()->route('admin.posts.show', $post)->with('message', "Hai modificato con successo: $post->title");
     }
 
     /**
@@ -104,6 +104,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')->with('message', "Hai eliminato con successo: $post->title");
     }
 }
